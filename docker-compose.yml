@@ -44,3 +44,16 @@ services:
       - kafka
     ports:
       - '3334:3334'
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: pg
+      POSTGRES_PASSWORD: 126453
+      POSTGRES_DB: db_luby_cash_ms
+    ports:
+      - '5432:5432'
+    networks:
+      - luby-cash
+    volumes:
+       - /db/var/lib/postgres
