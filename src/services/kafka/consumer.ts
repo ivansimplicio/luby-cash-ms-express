@@ -1,4 +1,5 @@
 import { Consumer, Kafka } from 'kafkajs';
+import ClientService from '../client/service';
 
 class KafkaConsumer {
   private consumer: Consumer;
@@ -16,7 +17,8 @@ class KafkaConsumer {
     await this.consumer.subscribe({ topic, fromBeginning: false });
     await this.consumer.run({
       eachMessage: async ({ topic, partition, message }) => {
-        console.log(topic, message.value.toString());
+        console.log(`consuming topic: ${topic}`);
+        new ClientService().saveClient(message.value.toString());
       },
     });
   }

@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import KafkaConsumer from './services/kafka/consumer';
+import './config/connect';
 
 dotenv.config();
 

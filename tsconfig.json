@@ -8,6 +8,9 @@
     "skipLibCheck": true,
     "incremental": true,
     "outDir": "./dist",
+    "baseUrl": ".",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "typeRoots": [
       "../node_modules/@types"
     ],

@@ -1,0 +1,16 @@
+[{
+  "type": "postgres",
+  "host": "db",
+  "port": 5432,
+  "username": "pg",
+  "password": "126453",
+  "database": "db_luby_cash_ms",
+  "migrationsTableName": "migrations",
+  "synchronize": false,
+  "logging": false,
+  "entities": ["./src/models/**/*.ts"],
+  "migrations": ["./database/migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "./database/migrations/"
+  }
+}]
