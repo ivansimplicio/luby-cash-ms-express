@@ -15,10 +15,8 @@ class Mailer {
     this.handlebarsConfig = handlebarsConfig;
   }
 
-  async sendEmail(args: any) {
+  async sendEmail(template: string, subject: string, user: any, content: any) {
     this.transporter.use('compile', handlebars(this.handlebarsConfig));
-    const template = args.template;
-    const { user, subject, content } = args.content;
     const mailer = {
       from: process.env.SMTP_EMAIL_SENDER,
       to: user.email,

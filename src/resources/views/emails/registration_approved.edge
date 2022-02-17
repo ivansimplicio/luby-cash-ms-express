@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <style>
+        body {
+            background-color: #e0eff1;
+            color: #680148;
+            text-align: center;
+            font-family: Helvetica;
+            font-weight: bold;
+            padding: auto;
+            margin-top: 0;
+            font-size: 30px;
+        }
+        .header {
+            background-color: #7db4b5;
+            padding: 5%;
+        }
+        h1 {
+            font-size: 52px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Parabéns, seu cadastro foi aprovado! 😁</h1>
+    </div>
+    <p>Olá {{ user.fullName }}, você possui uma renda mensal superior a {{ content.minValue }}, e isso fez com você pudesse ser aprovado em nosso sistema.
+         A partir de agora você poderá efetuar seu login para ter acesso ao sistema, utilizando o email e password informados no momento do cadastro.
+    </p>
+    <p>Com isso, você pode começar realizar transações via Pix utilizando o CPF cadastrado. E ainda mais, você recebeu um saldo inicial de {{ content.bonus }} para 
+        começar realizar movimentações, aproveite! 
+    </p>
+    <h2>Luby Cash</h2>
+</body>
+</html>

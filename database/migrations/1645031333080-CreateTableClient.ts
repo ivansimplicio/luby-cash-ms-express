@@ -48,6 +48,10 @@ export class CreateTableClient1645031333080 implements MigrationInterface {
             type: 'float',
           },
           {
+            name: 'current_balance',
+            type: 'float',
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',

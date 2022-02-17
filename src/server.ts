@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
-import KafkaConsumer from './services/kafka/consumer';
+import ConsumerService from './services/kafka/ConsumerService';
 import './config/connect';
 
 dotenv.config();
@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 app.use(bodyParser.json());
 
-const consumer = new KafkaConsumer();
+const consumer = new ConsumerService();
 
 consumer.consume('customer_registration');
 

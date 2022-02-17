@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <style>
+        body {
+            background-color: #e0eff1;
+            color: #680148;
+            text-align: center;
+            font-family: Helvetica;
+            font-weight: bold;
+            padding: auto;
+            margin-top: 0;
+            font-size: 30px;
+        }
+        .header {
+            background-color: #7db4b5;
+            padding: 5%;
+        }
+        h1 {
+            font-size: 52px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Infelizmente não foi dessa vez. 😕</h1>
+    </div>
+    <p>Olá {{ user.fullName }}, sentimos muito, mas infelizmente você não foi aprovado em nosso sistema por possuir uma renda mensal inferior a {{ content.minValue }}. 
+        Com isso, você não poderá utilizar do seu cadastro para realizar movimentações em nosso sistema.
+    </p>
+    <h2>Luby Cash</h2>
+</body>
+</html>

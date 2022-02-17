@@ -32,6 +32,9 @@ export default class Client {
   @Column({ name: 'average_salary' })
   averageSalary: number;
 
+  @Column({ name: 'current_balance' })
+  currentBalance: number;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 

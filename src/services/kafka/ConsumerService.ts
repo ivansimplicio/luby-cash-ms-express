@@ -1,7 +1,7 @@
 import { Consumer, Kafka } from 'kafkajs';
-import ClientService from '../client/service';
+import ClientService from '../client/ClientService';
 
-class KafkaConsumer {
+class ConsumerService {
   private consumer: Consumer;
 
   constructor() {
@@ -16,12 +16,11 @@ class KafkaConsumer {
     await this.consumer.connect();
     await this.consumer.subscribe({ topic, fromBeginning: false });
     await this.consumer.run({
-      eachMessage: async ({ topic, partition, message }) => {
-        console.log(`consuming topic: ${topic}`);
-        new ClientService().saveClient(message.value.toString());
+      eachMessage: async ({ topic, message }) => {
+        new ClientService().processClientRegistration(message.value.toString());
       },
     });
   }
 }
 
-export default KafkaConsumer;
+export default ConsumerService;
