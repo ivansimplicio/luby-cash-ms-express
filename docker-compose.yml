@@ -2,9 +2,10 @@ version: "3"
 networks:
   luby-cash:
     external: true
+  luby-cash-ms:
+    driver: bridge
 
 services:
-
   app:
     container_name: 'luby-cash-ms-express'
     build:
@@ -17,6 +18,7 @@ services:
       - /app/node_modules
     networks:
       - luby-cash
+      - luby-cash-ms
     ports:
       - '3334:3334'
 
@@ -29,6 +31,6 @@ services:
     ports:
       - '5432:5432'
     networks:
-      - luby-cash
+      - luby-cash-ms
     volumes:
        - /db/var/lib/postgres
