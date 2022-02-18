@@ -6,7 +6,7 @@ networks:
     driver: bridge
 
 services:
-  app:
+  app-ms:
     container_name: 'luby-cash-ms-express'
     build:
       context: .

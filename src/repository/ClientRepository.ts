@@ -14,6 +14,11 @@ class ClientRepository {
     });
     return savedClient;
   }
+
+  public async findByCPF(cpf: string) {
+    const clientRepository = getRepository(Client);
+    return await clientRepository.findOne({ cpfNumber: cpf });
+  }
 }
 
 export default new ClientRepository();

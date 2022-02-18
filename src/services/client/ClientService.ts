@@ -1,7 +1,7 @@
-import mailer from '../nodemailer/mailer';
+import mailer from '../nodemailer/Mailer';
 import ProducerService from '../kafka/ProducerService';
 import ClientRepository from '../../repository/ClientRepository';
-import Status from './enums/status';
+import Status from './enums/Status';
 
 export default class ClientService {
   public async processClientRegistration(content: string) {
