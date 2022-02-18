@@ -1,5 +1,6 @@
 import { Consumer, Kafka } from 'kafkajs';
 import ClientService from '../client/ClientService';
+import TransferService from '../transfer/TranferService';
 
 class ConsumerService {
   private consumer: Consumer;
@@ -17,7 +18,14 @@ class ConsumerService {
     await this.consumer.subscribe({ topic, fromBeginning: false });
     await this.consumer.run({
       eachMessage: async ({ topic, message }) => {
-        new ClientService().processClientRegistration(message.value.toString());
+        if (topic === 'transfer_made') {
+          new TransferService().completeTransfer(message.value.toString());
+        }
+        if (topic === 'customer_registration') {
+          new ClientService().processClientRegistration(
+            message.value.toString()
+          );
+        }
       },
     });
   }

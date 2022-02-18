@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <style>
+        body {
+            background-color: #e0eff1;
+            color: #680148;
+            text-align: center;
+            font-family: Helvetica;
+            font-weight: bold;
+            padding: auto;
+            margin-top: 0;
+            font-size: 30px;
+        }
+        .header {
+            background-color: #7db4b5;
+            padding: 5%;
+        }
+        h1 {
+            font-size: 52px;
+        }
+        table,
+        td,
+        th {
+            margin-left: auto;
+            margin-right: auto;
+            border: 4px solid #680148;
+            border-collapse: collapse;
+            padding: 10px 15px 10px 15px;
+        }
+        td {
+            color: #269294;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Transferência realizada! 💸</h1>
+    </div>
+    <p>Olá {{ user.fullName }}, você acabou de realizar uma nova transferência via Pix.</p>
+    <p>Abaixo, um resumo de sua transferência:</p>
+    <table>
+        <thead>
+            <tr>
+                <th>CPF DO DESTINATÁRIO</th>
+                <th>VALOR ENVIADO</th>
+                <th>SALDO ATUAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ content.cpfDestination }}</td>
+                <td>{{ content.value }}</td>
+                <td>{{ content.currentBalance }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Luby Cash</h2>
+</body>
+</html>

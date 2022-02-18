@@ -16,8 +16,26 @@ class ClientRepository {
   }
 
   public async findByCPF(cpf: string) {
-    const clientRepository = getRepository(Client);
-    return await clientRepository.findOne({ cpfNumber: cpf });
+    const repository = getRepository(Client);
+    return await repository.findOne({ cpfNumber: cpf });
+  }
+
+  public async withdraw(cpf: string, value: number) {
+    const repository = getRepository(Client);
+    const client = await repository.findOne({
+      cpfNumber: cpf,
+    });
+    client.currentBalance -= value;
+    return await repository.save(client);
+  }
+
+  public async deposit(cpf: string, value: number) {
+    const repository = getRepository(Client);
+    const client = await repository.findOne({
+      cpfNumber: cpf,
+    });
+    client.currentBalance += value;
+    return await repository.save(client);
   }
 }
 

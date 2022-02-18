@@ -1,7 +1,8 @@
-import mailer from '../nodemailer/Mailer';
+import Mailer from '../nodemailer/Mailer';
 import ProducerService from '../kafka/ProducerService';
 import ClientRepository from '../../repository/ClientRepository';
 import Status from './enums/Status';
+import { convertToReal } from '../util/converter';
 
 export default class ClientService {
   public async processClientRegistration(content: string) {
@@ -20,33 +21,26 @@ export default class ClientService {
     const OPENING_BALANCE = 200;
     const { averageSalary } = client;
     if (averageSalary >= ACCEPTED_AVERAGE_SALARY) {
-      await mailer.sendEmail(
+      await Mailer.sendEmail(
         'registration_approved',
         'Luby Cash: Cadastro Aprovado!',
         client,
         {
-          minValue: this.convertToReal(ACCEPTED_AVERAGE_SALARY),
-          bonus: this.convertToReal(OPENING_BALANCE),
+          minValue: convertToReal(ACCEPTED_AVERAGE_SALARY),
+          bonus: convertToReal(OPENING_BALANCE),
         }
       );
       client.currentBalance = OPENING_BALANCE;
       return Status.APPROVED;
     } else {
-      await mailer.sendEmail(
+      await Mailer.sendEmail(
         'registration_disapproved',
         'Luby Cash: Cadastro Reprovado!',
         client,
-        { minValue: this.convertToReal(ACCEPTED_AVERAGE_SALARY) }
+        { minValue: convertToReal(ACCEPTED_AVERAGE_SALARY) }
       );
       client.currentBalance = 0;
       return Status.DISAPPROVED;
     }
-  }
-
-  private convertToReal(value: number): string {
-    return value.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    });
   }
 }

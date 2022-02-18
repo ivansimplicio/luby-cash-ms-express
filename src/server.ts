@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 const consumer = new ConsumerService();
 
 consumer.consume('customer_registration');
+consumer.consume('transfer_made');
 
 app.use('/', clientRouter);
 
