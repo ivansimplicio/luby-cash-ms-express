@@ -26,6 +26,9 @@ class ConsumerService {
             message.value.toString()
           );
         }
+        if (topic === 'forgot_password') {
+          new ClientService().sendEmailForgotPassword(message.value.toString());
+        }
       },
     });
   }

@@ -43,4 +43,14 @@ export default class ClientService {
       return Status.DISAPPROVED;
     }
   }
+
+  public async sendEmailForgotPassword(user: string) {
+    const client = JSON.parse(user).content.user;
+    await Mailer.sendEmail(
+      'forgot_password',
+      'Luby Cash: Recuperação de senha',
+      client,
+      {}
+    );
+  }
 }

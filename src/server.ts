@@ -16,6 +16,7 @@ const consumer = new ConsumerService();
 
 consumer.consume('customer_registration');
 consumer.consume('transfer_made');
+consumer.consume('forgot_password');
 
 app.use('/', clientRouter);
 
