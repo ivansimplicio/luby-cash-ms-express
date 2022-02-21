@@ -31,10 +31,6 @@ export class CreateTableClient1645031333080 implements MigrationInterface {
             isUnique: true,
           },
           {
-            name: 'password',
-            type: 'varchar(150)',
-          },
-          {
             name: 'phone',
             type: 'varchar(20)',
           },

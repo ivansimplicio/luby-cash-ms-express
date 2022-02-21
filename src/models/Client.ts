@@ -21,9 +21,6 @@ export default class Client {
   email: string;
 
   @Column()
-  password: string;
-
-  @Column()
   phone: string;
 
   @Column({ name: 'cpf_number' })

@@ -10,7 +10,8 @@
     "dev": "ts-node-dev --respawn -T --no-notify src/server.ts",
     "build": "tsc",
     "start": "node -r dotenv/config ./dist/server.js",
-    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "startdb": "npm run typeorm migration:run"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",

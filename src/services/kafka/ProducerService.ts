@@ -1,4 +1,5 @@
 import { Kafka, Producer, Message } from 'kafkajs';
+import Topics from './enums/Topics';
 
 class ProducerService {
   private producer: Producer;
@@ -25,7 +26,7 @@ class ProducerService {
   }
 
   public async produceTopicValuedClient(user: any) {
-    this.sendToTopic('valued_client', { user });
+    this.sendToTopic(Topics.VALUED_CLIENT, { user });
   }
 }
 

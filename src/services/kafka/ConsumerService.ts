@@ -1,6 +1,7 @@
 import { Consumer, Kafka } from 'kafkajs';
 import ClientService from '../client/ClientService';
 import TransferService from '../transfer/TranferService';
+import Topics from './enums/Topics';
 
 class ConsumerService {
   private consumer: Consumer;
@@ -18,15 +19,15 @@ class ConsumerService {
     await this.consumer.subscribe({ topic, fromBeginning: false });
     await this.consumer.run({
       eachMessage: async ({ topic, message }) => {
-        if (topic === 'transfer_made') {
+        if (topic === Topics.TRANFER_MADE) {
           new TransferService().completeTransfer(message.value.toString());
         }
-        if (topic === 'customer_registration') {
+        if (topic === Topics.CUSTOMER_REGISTRATION) {
           new ClientService().processClientRegistration(
             message.value.toString()
           );
         }
-        if (topic === 'forgot_password') {
+        if (topic === Topics.FORGOT_PASSWORD) {
           new ClientService().sendEmailForgotPassword(message.value.toString());
         }
       },

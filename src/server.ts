@@ -5,6 +5,7 @@ import ConsumerService from './services/kafka/ConsumerService';
 import './config/connect';
 import clientRouter from './routes/client';
 import cors from 'cors';
+import Topics from './services/kafka/enums/Topics';
 
 dotenv.config();
 
@@ -14,9 +15,9 @@ app.use(bodyParser.json());
 
 const consumer = new ConsumerService();
 
-consumer.consume('customer_registration');
-consumer.consume('transfer_made');
-consumer.consume('forgot_password');
+consumer.consume(Topics.CUSTOMER_REGISTRATION);
+consumer.consume(Topics.TRANFER_MADE);
+consumer.consume(Topics.FORGOT_PASSWORD);
 
 app.use('/', clientRouter);
 

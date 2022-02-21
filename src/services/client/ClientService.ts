@@ -10,7 +10,7 @@ export default class ClientService {
     const status = await this.evaluateClient(client);
     const savedClient = await ClientRepository.save(client);
     new ProducerService().produceTopicValuedClient({
-      cpf: savedClient.cpfNumber,
+      cpfNumber: savedClient.cpfNumber,
       uuidClient: savedClient.id,
       status,
     });

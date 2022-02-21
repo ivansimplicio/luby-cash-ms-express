@@ -6,7 +6,7 @@ const clientRouter = express();
 const clientController = new ClientController();
 
 clientRouter.route('/ms/clients/:cpf').get((req: Request, res: Response) => {
-  return clientController.index(req, res);
+  return clientController.show(req, res);
 });
 
 export default clientRouter;
