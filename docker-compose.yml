@@ -1,0 +1,64 @@
+version: "3"
+networks:
+  luby-cash:
+    external: true
+  luby-cash-ms:
+    driver: bridge
+
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    networks:
+      - luby-cash
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    networks:
+      - luby-cash
+    depends_on:
+      - zookeeper
+    ports:
+      - 9092:9092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  app-ms:
+    container_name: 'luby-cash-ms-express'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm run dev
+    image: luby-cash-ms-express
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - kafka
+    networks:
+      - luby-cash
+      - luby-cash-ms
+    ports:
+      - '3334:3334'
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: pg
+      POSTGRES_PASSWORD: 126453
+      POSTGRES_DB: db_luby_cash_ms
+    ports:
+      - '5432:5432'
+    depends_on:
+      - kafka
+    networks:
+      - luby-cash-ms
+    volumes:
+       - /db/var/lib/postgres
